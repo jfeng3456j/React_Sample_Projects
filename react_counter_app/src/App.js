@@ -30,8 +30,8 @@ function App() {
 
       <div className="container">
         <h3>count: {counter}</h3>
-        <button onClick={inc}> Increment </button>
-        <button onClick={dec}> Decrement </button>
+        <button type='button' onClick={inc}> Increment </button>
+        <button type='button' onClick={dec}> Decrement </button>
       </div>
     </div>
   );
