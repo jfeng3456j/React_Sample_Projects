@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: "20.x"
           cache: "npm"
+          cache-dependency-path: react_counter_app/package-lock.json
 
       - name: Echo GA ID (masked)
         run: |
@@ -32,12 +33,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ./react_counter_app
 
       - name: Build
         run: npm run build
+        working-directory: ./react_counter_app
 
       - name: Deploy to github
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
-          publish_dir: ./build
+          publish_dir: ./react_counter_app/build

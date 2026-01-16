@@ -2,7 +2,7 @@
   "name": "react_counter_app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jfeng3456j.github.io/react_counter_app",
+  "homepage": "https://jfeng3456j.github.io/react_sample_projects/react_counter_app",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -13,12 +13,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-    "devDependencies": {
-    "gh-pages": "^6.1.1"
-  },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "prestart": "node scripts/setup-env.js",
     "prebuild": "node scripts/setup-env.js",
     "start": "react-scripts start",
@@ -43,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
