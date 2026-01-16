@@ -8,12 +8,11 @@ on:
       - completed
 
 env:
-  REACT_APP_GA_TRACKING_ID: ${{secrets.REACT_APP_GA_TRACKING_ID}}
+  REACT_APP_GA_TRACKING_ID: ${{ secrets.REACT_APP_GA_TRACKING_ID }}
 
 jobs:
   deploy:
-    if: ${{github.event.workflow_run.conclusion == 'success'}}
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -40,33 +39,26 @@ jobs:
         run: pnpm install
         working-directory: ./react_counter_app
 
-      - name: Debug before build
-        run: |
-          echo "=== BEFORE BUILD ==="
-          echo "Current DIRECTORY: $(pwd)"
-          echo "REACT APP DIRECTORY CONTENT"
-          ls -la ./react_counter_app/build/
-          echo ""
-          echo "Checking package.json build script:"
-          cat ./react_counter_app/package.json | grep -A2 -B2 '"build"'
-          echo ""
-          echo "Checking if scripts/setup-env.js exists:"
-          ls -la ./react_counter_app/scripts/ 2>/dev/null || echo "scripts directory not found"
-
       - name: Build
+        env:
+          REACT_APP_GA_TRACKING_ID: ${{ secrets.REACT_APP_GA_TRACKING_ID }}
         run: pnpm run build
         working-directory: ./react_counter_app
 
-      - name: Debug after build
+      - name: Check build output
         run: |
-          echo "=== AFTER BUILD ==="
-          echo "Current DIRECTORY: $(pwd)"
-          echo "REACT APP DIRECTORY CONTENT"
-          ls -la ./react_counter_app/
+          echo "Checking if build was successful..."
+          if [ -d "./react_counter_app/build" ]; then
+            echo "✅ Build directory created"
+            ls -la ./react_counter_app/build/
+          else
+            echo "❌ Build directory NOT created!"
+            exit 1
+          fi
 
-      - name: Deploy to github
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./react_counter_app/build
           force_orphan: true
