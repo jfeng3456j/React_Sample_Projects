@@ -5,10 +5,12 @@ on:
     branches: [main, master]
     paths:
       - "react_counter_app/**"
+      - ".github/workflows/run-test.yaml"
   pull_request:
     branches: [main, master]
     paths:
       - "react_counter_app/**"
+      - ".github/workflows/run-test.yaml"
 
 jobs:
   test:
