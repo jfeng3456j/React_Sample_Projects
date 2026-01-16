@@ -45,7 +45,7 @@ jobs:
           echo "=== BEFORE BUILD ==="
           echo "Current DIRECTORY: $(pwd)"
           echo "REACT APP DIRECTORY CONTENT"
-          ls =la ./react_counter_app/build/
+          ls -la ./react_counter_app/build/
           echo ""
           echo "Checking package.json build script:"
           cat ./react_counter_app/package.json | grep -A2 -B2 '"build"'
@@ -62,7 +62,7 @@ jobs:
           echo "=== AFTER BUILD ==="
           echo "Current DIRECTORY: $(pwd)"
           echo "REACT APP DIRECTORY CONTENT"
-          ls =la ./react_counter_app/
+          ls -la ./react_counter_app/
 
       - name: Deploy to github
         uses: peaceiris/actions-gh-pages@v3
