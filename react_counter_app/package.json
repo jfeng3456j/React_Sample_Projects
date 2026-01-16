@@ -2,7 +2,7 @@
   "name": "react_counter_app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jfeng3456j.github.io/react_sample_projects/react_counter_app",
+  "homepage": "https://jfeng3456j.github.io/react_sample_projects",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
